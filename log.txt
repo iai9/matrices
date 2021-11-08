@@ -27,3 +27,4 @@ log
     ok done. 
     will work on matrix addition and subtraction right now. there the same basically, but with one difference
     so i feel like doing them together should be fine
+
