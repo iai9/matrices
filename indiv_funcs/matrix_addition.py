@@ -38,6 +38,9 @@ def add_matrices(mat1, mat2):
             for col in range(len(mat1[0]))] \
             for row in range(len(mat1))) # O(n**2)
         return l
+    
+    else:
+        raise ValueError("Args are different size and thus cannot be added")
 
 def subtract_matrices(mat1, mat2): # subtracts second term from first
 
@@ -50,6 +53,9 @@ def subtract_matrices(mat1, mat2): # subtracts second term from first
             for row in range(len(mat1))) # O(n**2)
         return l
 
+    else:
+        raise ValueError("Args are different size and thus cannot be subtraction")
+
 
 ######### Vars
 
@@ -61,7 +67,8 @@ m1 = [
 m2 = [
     [7,7],
     [5,2],
-    [3,1]
+    [3,1],
+    [4,5]
 ]
 
 ######### Main
