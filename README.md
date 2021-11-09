@@ -8,6 +8,7 @@ currently has:
 *   Mutliplication of matrices
 *   Addition of matrices
 *   subtraction of matrices
+*   tranpose
 
 
 will be support for the following in the future:
