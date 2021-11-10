@@ -31,10 +31,19 @@ known bugs:
 
 ######### Functions
 
+def get_col(matrix_2d, _index):
+    return list(row[_index] for row in matrix_2d) # O(n)
+
 def echelon(matrix):
 
     if (len(matrix)) == (len(matrix[0])):
-        pass
+        
+        for col_index in len(matrix[0]):
+            col = get_col(matrix, col_index)
+            for row_index in len(col):
+
+                if row_index >=
+
     else:
         raise ValueError("List is not sqaure")
 
