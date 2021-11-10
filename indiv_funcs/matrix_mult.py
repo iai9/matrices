@@ -44,11 +44,9 @@ def get_col(matrix_2d, _index):
 def multiply_matrix(matrix1, matrix2):
 
     # matrix1 row and column number. len() is O(1), constant time
-    matrix1_rows = len(matrix1)
-    matrix1_cols = len(matrix1[0]) # just taking the first. I assume that each argument is a completely filled list
+    matrix1_rows = len(matrix1) # just taking the first. I assume that each argument is a completely filled list
 
     # matrix2 row and column number. still constant time
-    matrix2_rows = len(matrix2)
     matrix2_cols = len(matrix2[0])
 
     if matrix1_rows == matrix2_cols:
