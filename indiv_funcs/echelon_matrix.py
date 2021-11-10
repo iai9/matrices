@@ -31,11 +31,14 @@ known bugs:
 
 ######### Functions
 
-    
+def echelon(matrix):
+
+    if (len(matrix)) == (len(matrix[0])):
+        pass
+    else:
+        raise ValueError("List is not sqaure")
 
 ######### Vars
 
 ######### Main
 
-for i in range(0,1):
-    print(i)
