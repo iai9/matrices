@@ -31,23 +31,64 @@ known bugs:
 
 ######### Functions
 
+
 def get_col(matrix_2d, _index):
     return list(row[_index] for row in matrix_2d) # O(n)
 
+def row_by_scalar(row, scalar_quantity):
+
+    if (isinstance(scalar_quantity, int)) or (isinstance(scalar_quantity, float)):
+        return list((element*scalar_quantity) for element in row)
+    
+    else: raise ValueError("u r returardedd lamo")
+
+def sub_row(row1, row2):
+
+    if len(row1) == len(row2):
+        
+        return list((row1[i] - row2[i]) for i in range(len(row1)))
+
+    else:
+        raise ValueError("Rows are different sizes and cannot be subtracted")
+
 def echelon(matrix):
 
-    if (len(matrix)) == (len(matrix[0])):
+    if (len(matrix)) == (len(matrix[0])): #O(1)
         
-        for col_index in len(matrix[0]):
-            col = get_col(matrix, col_index)
-            for row_index in len(col):
+        for col_index in range(len(matrix[0])): #O(n)
+            col = get_col(matrix, col_index) # O(n)
+            for row_index in range(len(col)): # O(n)
 
-                if row_index >=
+                if row_index <= col_index: #O(1)
+                    if row_index == col_index: #O(1)
+                        denominator = matrix[row_index][col_index] #O(1)
+                        raw_subtractant_row = matrix[row_index] #O(1)
+                    pass              
+
+                else:
+                    row_to_sub_from = matrix[row_index] # O(1)
+                    numerator = matrix[row_index][col_index] #O(1)
+
+
+                    subtractant = row_by_scalar(raw_subtractant_row, (numerator/denominator)) # O(n)
+                    subbed_row = sub_row(row_to_sub_from, subtractant) # O(1)
+
+                    matrix[row_index] = subbed_row
+        
+        return matrix
 
     else:
         raise ValueError("List is not sqaure")
 
 ######### Vars
 
+m1 = [
+        [27,5,6],
+        [4,6,2],
+        [5,2,6]
+]
+
 ######### Main
+
+print(echelon(m1))
 
