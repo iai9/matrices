@@ -51,7 +51,7 @@ def sub_row(row1, row2):
     else:
         raise ValueError("Rows are different sizes and cannot be subtracted")
 
-def echelon(matrix):
+def echelon(matrix): # O(n**3)
 
     if (len(matrix)) == (len(matrix[0])): #O(1)
         
