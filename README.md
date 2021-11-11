@@ -9,10 +9,10 @@ currently has:
 *   Addition of matrices
 *   subtraction of matrices
 *   tranpose
-
+*   echelon
+*   determinants
 
 will be support for the following in the future:
 
 *   inversion
-*   echelon
-*   determinants (will likely use echelon)
+
