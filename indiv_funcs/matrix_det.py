@@ -29,7 +29,7 @@ def matrix_det(matrix):
     if len(matrix) == len(matrix[0]):
 
         det = 1
-        for diag_index in range(len(matrix)):
+        for diag_index in range(len(matrix)): # O(n)
             det = det*matrix[diag_index][diag_index]
     
         return det

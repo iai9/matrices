@@ -56,9 +56,11 @@ def multiply_matrix(matrix1, matrix2):
         for m1_row in matrix1: # i believe this line alone is O(n)
             new_matrix_row = []
             for _index in range(len(matrix2[0])): # this line is O(n)
-                new_matrix_row.append(multip_1row( # this line is O(n**2)
+
+                # teh following, as a whole, is O(n**2)
+                new_matrix_row.append(multip_1row( # O(n)
                     m1_row,
-                    get_col(matrix2, _index)
+                    get_col(matrix2, _index) # O(n)
                 ))
             new_matrix.append(new_matrix_row)
         
