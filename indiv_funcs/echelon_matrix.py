@@ -78,7 +78,7 @@ def echelon(matrix): # O(n**3)
         return matrix
 
     else:
-        raise ValueError("List is not sqaure")
+        raise ValueError("List is not square")
 
 ######### Vars
 
