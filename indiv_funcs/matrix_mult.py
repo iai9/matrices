@@ -44,12 +44,14 @@ def get_col(matrix_2d, _index):
 def multiply_matrix(matrix1, matrix2):
 
     # matrix1 row and column number. len() is O(1), constant time
-    matrix1_rows = len(matrix1) # just taking the first. I assume that each argument is a completely filled list
+    matrix1_rows = len(matrix1) 
+    matrix1_cols = len(matrix1[0]) # just taking the first. I assume that each argument is a completely filled list
 
     # matrix2 row and column number. still constant time
+    matrix2_rows = len(matrix2)
     matrix2_cols = len(matrix2[0])
 
-    if matrix1_rows == matrix2_cols:
+    if (matrix1_rows == matrix2_cols) or (matrix1_cols == matrix2_rows): 
         new_matrix = []
 
         # overall O(n**4) i believe. kinda sucks, but at least it should (just tested, it does indeed) work
@@ -62,6 +64,7 @@ def multiply_matrix(matrix1, matrix2):
                     m1_row,
                     get_col(matrix2, _index) # O(n)
                 ))
+            
             new_matrix.append(new_matrix_row)
         
         return new_matrix
@@ -74,15 +77,23 @@ def multiply_matrix(matrix1, matrix2):
 ######### vars
 
 m1 = [
-    [4,8,2],
-    [1,4,2]
+    [3,6,7,1],
+    [1,4,9,7],
+    [9,8,6,8],
+    [56,2,6,1],
+    [4,7,-2,4],
+    [6,2,4,6],
+    [2,45,7,1]
 ]
 
+
 m2 = [
-    [3,6],
-    [1,4],
-    [9,8]
+    [4,8,2,35,3,6,1,4],
+    [1,4,2,-6,4,6,2,1],
+    [0,4,5,5,2,5,7,1,4],
+    [2,5,6,7,8,87,2,4]
 ]
+
 
 ######### main
 
