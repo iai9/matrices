@@ -1,5 +1,5 @@
 '''
-imran iftikar
+imran a iftikar
 11-6-21
 
 multiplication of two of any size 2d array in the form
@@ -26,7 +26,7 @@ none as of now
 
 ######### Dependencies
 
-'''cant use any, i'm gonna try to do this vanilla'''
+'''cant use any, i'm gonna try to do this vanilla''' 
 
 
 ######### Funcs

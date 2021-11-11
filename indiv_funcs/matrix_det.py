@@ -1,6 +1,6 @@
 '''
 11.10.21
-imran iftikar
+imran a iftikar
 
 the purpose of this program is to find the determinant of TWO DIMENSIONAL matrix IN UPPER TRIANGLE ECHELON FORM
 

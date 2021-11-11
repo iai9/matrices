@@ -1,5 +1,5 @@
 '''
-imran
+imran i 
 11-7-21
 
 multiply a TWO DIMENSIONAL array in form of:
