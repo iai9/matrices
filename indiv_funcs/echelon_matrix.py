@@ -42,7 +42,7 @@ def row_by_scalar(row, scalar_quantity):
     
     else: raise ValueError("u r returardedd lamo")
 
-def sub_row(row1, row2):
+def subtract_row(row1, row2):
 
     if len(row1) == len(row2):
         
@@ -50,6 +50,11 @@ def sub_row(row1, row2):
 
     else:
         raise ValueError("Rows are different sizes and cannot be subtracted")
+
+def swap_rows(mat, r1_idx, r2_idx):
+    
+    mat[r1_idx], mat[r2_idx] = mat[r2_idx], mat[r1_idx] 
+
 
 def echelon(matrix): # O(n**3)
 
@@ -71,7 +76,7 @@ def echelon(matrix): # O(n**3)
 
 
                     subtractant = row_by_scalar(raw_subtractant_row, (numerator/denominator)) # O(n)
-                    subbed_row = sub_row(row_to_sub_from, subtractant) # O(1)
+                    subbed_row = subtract_row(row_to_sub_from, subtractant) # O(1)
 
                     matrix[row_index] = subbed_row
         
