@@ -2,8 +2,8 @@
 imran a iftikar
 11-6-21
 
-multiplication of two of any size 2d array in the form
 
+multiplication of two of any size 2d array in the form
     array = [
         [a1, a2, a3, ..., aN],
         [b1, b2, b3, ..., bN],
@@ -15,13 +15,12 @@ multiplication of two of any size 2d array in the form
 i dont care too much about time, as this is mainly a personal project for fun, but I'll be keeping time in mind,
 as its an area I feel like I need to improve in. even though im not going to try to optimize for speed, 
 I'm going to keep track of everything major to see if I get the time right, as I might not
-and then ill just get feedback on where i will likely get it wrong
 
+and then ill just get feedback on where i will likely get it wrong
 log.txt separate. 
 
 known bugs:
 none as of now
-
 '''
 
 ######### Dependencies
@@ -52,6 +51,10 @@ def multiply_matrix(matrix1, matrix2):
     matrix2_cols = len(matrix2[0])
 
     if (matrix1_rows == matrix2_cols) or (matrix1_cols == matrix2_rows): 
+
+        if (matrix1_rows == matrix2_cols):
+            matrix1, matrix2 = matrix2, matrix1
+
         new_matrix = []
 
         # overall O(n**4) i believe. kinda sucks, but at least it should (just tested, it does indeed) work
@@ -98,7 +101,3 @@ m2 = [
 ######### main
 
 print(multiply_matrix(m1, m2))
-
-
-
-
