@@ -1,24 +1,111 @@
-# l1 = ["cock"]
-# l2 = ["bruh"]
+'''
+11-9-21
+imran iftikar
 
-# l1, l2, = l2, l1
+the purpose of this program is to take a given SQAURE TWO DIMENSIONAL matrix in the form :
 
-# print(l1)
-# print(l2)
+    array = [
+    [a1, a2, a3, ..., aN],
+    [b1, b2, b3, ..., bN],
+    [c1, c2, c3, ..., cN],
+    ...,
+    [z1, z2, z3, ..., zN],
+    ]
 
+and find its echelon, upper triangle form
+this is useful for finding its determinant
+I also forsee myself using this code to find the inverse of a matrix larger than 2x2, by using an identity matrix and eliminating from there
+
+log.txt separate
+
+known bugs:
+    none 
+
+
+
+'''
+
+######### Dependencies
+
+'''none'''
+
+######### Functions
+
+
+def get_col(matrix_2d, _index):
+    return list(row[_index] for row in matrix_2d) # O(n)
+
+def row_by_scalar(row, scalar_quantity):
+
+    if (isinstance(scalar_quantity, int)) or (isinstance(scalar_quantity, float)):
+        return list((element*scalar_quantity) for element in row)
+    
+    else: raise ValueError("u r returardedd lamo")
+
+def subtract_row(row1, row2):
+
+    if len(row1) == len(row2):
+        
+        return list((row1[i] - row2[i]) for i in range(len(row1)))
+
+    else:
+        raise ValueError("Rows are different sizes and cannot be subtracted")
+
+def echelon(matrix): #
+
+    if (len(matrix)) == (len(matrix[0])): #O(1)
+
+    
+        
+        for col_index in range(len(matrix[0])): #O(n)
+            col = get_col(matrix, col_index) # O(n)
+
+            if col_index <= len(matrix): # O(1)
+
+                if all((i == 0) for i in col[col_index:]): #O(n)
+                    continue 
+                
+                elif col[col_index] == 0: # O(1)
+                    for i in range(len(col[col_index:])): #O(n)
+                        if col[col_index:][i] != 0: # O(1)
+                            row_idx = col_index+i # O(1)
+                            break 
+                    
+                    matrix[col_index], matrix[row_idx] = matrix[row_idx], matrix[col_index] # O(n)
+
+
+            for row_index in range(len(col)): # O(n)
+
+                if row_index <= col_index: #O(1)
+                    if row_index == col_index: #O(1)
+                        denominator = matrix[row_index][col_index] #O(1)
+                        raw_subtractant_row = matrix[row_index] #O(1)
+                    pass              
+
+                else:
+                    row_to_sub_from = matrix[row_index] # O(1)
+                    numerator = matrix[row_index][col_index] #O(1)
+
+
+                    subtractant = row_by_scalar(raw_subtractant_row, (numerator/denominator)) # O(n)
+                    subbed_row = subtract_row(row_to_sub_from, subtractant) # O(1)
+
+                    matrix[row_index] = subbed_row
+        
+        return matrix
+
+    else:
+        raise ValueError("List is not square")
+
+######### Vars
 
 m1 = [
-    [3,6,7,1],
-    [1,4,9,7], #m1[1]
-    [9,8,6,8],
-    [56,2,6,1], #m1[3]
-    [4,7,-2,4],
-    [6,2,4,6],
-    [2,45,7,1]
+        [0,5,6],
+        [4,0,2],
+        [2,1,6]
 ]
 
-m1[1], m1[3] = m1[3], m1[1]
+######### Main
 
-print(m1)
+print(echelon(m1))
 
-[[20, 81, 59, 111, 55, 176, 66, 29], [22, 95, 97, 105, 93, 684, 86, 45], [60, 168, 112, 353, 135, 828, 83, 82], [228, 485, 152, 1985, 196, 465, 104, 236], [31, 72, 36, 116, 68, 404, 12, 37], [38, 102, 72, 260, 82, 590, 50, 54], [55, 229, 135, -158, 208, 404, 143, 64]]

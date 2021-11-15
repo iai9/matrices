@@ -53,7 +53,7 @@ def subtract_row(row1, row2):
 
 def swap_rows(mat, r1_idx, r2_idx):
     
-    mat[r1_idx], mat[r2_idx] = mat[r2_idx], mat[r1_idx] 
+    mat[r1_idx], mat[r2_idx] = mat[r2_idx], mat[r1_idx] # O(n)
 
 
 def echelon(matrix): # O(n**3)
