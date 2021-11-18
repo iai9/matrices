@@ -1,4 +1,4 @@
-supposed to just be a simple library for TWO_DIMENSIONAL matrices. tensors have no place here lmaooooo gtfo silly tensors. jk jk im just competent enough to code stuff for ndim arrays. big sad. thats why np exists tho so not gunna complain. 
+supposed to just be a simple library for TWO_DIMENSIONAL matrices. tensors have no place here lmaooooo gtfo silly tensors. jk jk im just not competent enough to code stuff for ndim arrays. big sad. thats why np exists tho so not gunna complain. 
 
 
 currently has:
