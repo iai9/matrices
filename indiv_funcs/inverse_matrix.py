@@ -7,6 +7,18 @@ no. decided not to do
 
 pi = 3.1415926535
 
+def deg_to_rad(deg):
+    pass
+
+def rad_to_deg(rad):
+    pass
+
+def simplest_rad(rad):
+    pass
+
+def simplest_deg(deg):
+    pass
+
 def factorial(number):
 
     if isinstance(number, int) and number > 1:
@@ -39,5 +51,7 @@ def sin(x):
 
     return h
 
-print(round(sin(101.55273),8))
 
+print(round(sin(15411.55273),8))
+
+print(264214**(1/2))
