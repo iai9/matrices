@@ -18,14 +18,26 @@ def factorial(number):
     else:
         raise ValueError("Number cannot be factorial-ed")
 
-def to_rad(number): # hard coding, not iterating. idrc that the taylor series is infinite, I'll get close enough
-    return number/pi
-
-def rad_simplify(rad):
-    pass
-
 def sin(x):
-    h =  x - ((x**3)/(factorial(3))) + ((x**5)/(factorial(5))) - ((x**7)/(factorial(7))) + ((x**9)/(factorial(9))) - ((x**11)/(factorial(11)))
+
+    if x >= 2:
+        x = x%2
+
+    x = x*pi
+
+    h = x
+
+    for i in range(3, 102, 2):
+
+        if i%4 == 1:
+
+            h = h + ((x**i)/factorial(i))
+
+        else:
+
+            h = h - ((x**i)/factorial(i))
+
     return h
 
-print(sin(50))
+print(round(sin(101.55273),8))
+
