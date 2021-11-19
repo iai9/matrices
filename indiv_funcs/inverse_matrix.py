@@ -58,6 +58,15 @@ def cos(x):
 def tan(x):
     return sin(x)/cos(x)
 
+def csc(x):
+    return 1/sin(x)
+
+def sec(x):
+    return 1/cos(x)
+
+def cot(x):
+    return cos(x)/sin(x)
+
 
 print(round(sin(1/6),8))
 print(round(cos(1/6),8))
