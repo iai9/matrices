@@ -7,17 +7,17 @@ no. decided not to do
 
 pi = 3.1415926535
 
-def deg_to_rad(deg):
-    pass
+def deg_to_pi_rad(deg):
+    return deg/180
 
-def rad_to_deg(rad):
-    pass
+def pi_rad_to_deg(pirad):
+    return 180*pirad
 
-def simplest_rad(rad):
-    pass
+def simplest_pi_rad(pirad):
+    return pirad%2
 
 def simplest_deg(deg):
-    pass
+    return deg%360
 
 def factorial(number):
 
@@ -51,7 +51,14 @@ def sin(x):
 
     return h
 
+def cos(x):
+    h = 1/2 - x # cos(x) = sin(90-x) = sin(pi/2 radians - x)
+    return sin(h)
 
-print(round(sin(15411.55273),8))
+def tan(x):
+    return sin(x)/cos(x)
 
-print(264214**(1/2))
+
+print(round(sin(1/6),8))
+print(round(cos(1/6),8))
+print(round(tan(1/6),8))
