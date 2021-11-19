@@ -12,6 +12,7 @@ finds the inverse of a matrix by using reduction and a secondary identity matrix
 
 from echelon_matrix import echelon
 from transpose_matrix import transpose
+
 ######### Funcs
 
 def make_identity(dim):

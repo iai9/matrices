@@ -53,7 +53,7 @@ def subtract_row(row1, row2):
 
 def echelon(matrix): #
 
-    if (len(matrix)) == (len(matrix[0])): #O(1) checks for sqaure matrices. works with non sqaure matrices, as well    
+    # if (len(matrix)) == (len(matrix[0])): #O(1) checks for sqaure matrices. works with non sqaure matrices, as well    
         
         for col_index in range(len(matrix[0])): #O(n) this first for loop handles zeroes that might potentially lead to div by 0 errors
             col = get_col(matrix, col_index) # O(n)
@@ -92,18 +92,32 @@ def echelon(matrix): #
         
         return matrix
 
-    else:
-        raise ValueError("List is not square")
+    # else:
+    #     raise ValueError("List is not square")
 
 ######### Vars
 
-m1 = [
-        [6,5,6],
-        [4,2,2],
-        [2,1,6]
+# m1 = [
+#         [0,1,1,2,3,13],
+#         [0,1,1,2,3,13],
+#         [4,0,0,0,0,4],
+#         [0,0,1,1,1,6],
+#         [0,0,-1,1,1,4],
+#         [0,1,0,0,0,0]
+# ]
+
+m2 = [
+        [0,2,1,7],
+        [-3,0,4,9],
+        [1,-3,0,-5]
+
+
 ]
 
 ######### Main
 
-print(echelon(m1))
+ech = echelon(m2)
+
+for i in ech:
+    print(i)
 
