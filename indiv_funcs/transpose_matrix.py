@@ -23,8 +23,6 @@ known bugs:
 
 ######### dependencies
 
-'''none'''
-
 ######### funcs
 
 def get_col(matrix_2d, _index):
@@ -37,13 +35,10 @@ def transpose(matrix):
    
 ######### vars
 
-m1 = [
-    [7,7],
-    [5,2],
-    [3,1],
-    [4,5]
-]
+m1 = [[6, 5, 6], [0.0, -1.333333333333333, -2.0], [0.0, 0.0, 5.0]]
+m2 = [[6, 0.0, 0.0], [0.0, -1.333333333333333, 0.0], [0.0, 0.0, 5.0]]
 
 ######### main
 
 print(transpose(m1))
+print(transpose(m2))

@@ -40,7 +40,7 @@ def row_by_scalar(row, scalar_quantity):
     if (isinstance(scalar_quantity, int)) or (isinstance(scalar_quantity, float)):
         return list((element*scalar_quantity) for element in row)
     
-    else: raise ValueError("u r returardedd lamo")
+    else: raise ValueError(" cannot multiply row by non-integer or non-float value")
 
 def subtract_row(row1, row2):
 
@@ -51,17 +51,27 @@ def subtract_row(row1, row2):
     else:
         raise ValueError("Rows are different sizes and cannot be subtracted")
 
-def swap_rows(mat, r1_idx, r2_idx):
-    
-    mat[r1_idx], mat[r2_idx] = mat[r2_idx], mat[r1_idx] # O(n)
+def echelon(matrix): #
 
-
-def echelon(matrix): # O(n**3)
-
-    if (len(matrix)) == (len(matrix[0])): #O(1)
+    if (len(matrix)) == (len(matrix[0])): #O(1) checks for sqaure matrices. works with non sqaure matrices, as well    
         
-        for col_index in range(len(matrix[0])): #O(n)
+        for col_index in range(len(matrix[0])): #O(n) this first for loop handles zeroes that might potentially lead to div by 0 errors
             col = get_col(matrix, col_index) # O(n)
+
+            if col_index <= len(matrix): # O(1)
+
+                if all((i == 0) for i in col[col_index:]): #O(n)
+                    continue 
+                
+                elif col[col_index] == 0: # O(1)
+                    for i in range(len(col[col_index:])): #O(n)
+                        if col[col_index:][i] != 0: # O(1)
+                            row_idx = col_index+i # O(1)
+                            break 
+                    
+                    matrix[col_index], matrix[row_idx] = matrix[row_idx], matrix[col_index] # O(n)
+
+
             for row_index in range(len(col)): # O(n)
 
                 if row_index <= col_index: #O(1)
@@ -88,9 +98,9 @@ def echelon(matrix): # O(n**3)
 ######### Vars
 
 m1 = [
-        [27,5,6],
-        [4,6,2],
-        [5,2,6]
+        [6,5,6],
+        [4,2,2],
+        [2,1,6]
 ]
 
 ######### Main
