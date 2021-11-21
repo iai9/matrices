@@ -95,14 +95,13 @@ def inverse(matrix): #
         
         matrix = reflect(matrix)
         identity = reflect(identity)
-    
-    print(matrix)
-    print(identity)
 
     for i in range(len(matrix)):
         identity[i] = row_by_scalar(identity[i], (1/matrix[i][i]))
+
+    return identity
     
-    print(identity)
+
 
 
 
@@ -113,13 +112,3 @@ def inverse(matrix): #
 # print(make_identity(5))
  
 
-test = [
-    [2,6,2],
-    [2,7,1],
-    [5,6,1]
-
-]
-
-
-
-print(inverse(test))
