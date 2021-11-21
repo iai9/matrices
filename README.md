@@ -9,8 +9,9 @@ currently has:
 *   tranpose
 *   echelon
 *   determinants
+*   inverse
 
 will be support for the following in the future:
 
-*   inversion
+
 
