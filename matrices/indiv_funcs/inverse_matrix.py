@@ -1,36 +1,31 @@
 '''
-11-9-21
 imran iftikar
+11.19.21
 
-the purpose of this program is to take a given SQAURE TWO DIMENSIONAL matrix in the form :
-
-    array = [
-    [a1, a2, a3, ..., aN],
-    [b1, b2, b3, ..., bN],
-    [c1, c2, c3, ..., cN],
-    ...,
-    [z1, z2, z3, ..., zN],
-    ]
-
-and find its echelon, upper triangle form
-this is useful for finding its determinant
-I also forsee myself using this code to find the inverse of a matrix larger than 2x2, by using an identity matrix and eliminating from there
-
-log.txt separate
-
-known bugs:
-    none 
-
+finds the inverse of a matrix by using reduction and a secondary identity matrixS
 
 
 '''
 
 ######### Dependencies
 
-'''none'''
 
-######### Functions
+from echelon_matrix import echelon
+from transpose_matrix import transpose
+from reflect_matrix import reflect
 
+######### Funcs
+
+def make_identity(dim):
+
+    l = []
+
+    for one_idx in range(dim):
+        new_row = [0 for i in range(dim)]
+        new_row[one_idx] = 1
+        l.append(new_row)
+    
+    return l
 
 def get_col(matrix_2d, _index):
     return list(row[_index] for row in matrix_2d) # O(n)
@@ -51,9 +46,12 @@ def subtract_row(row1, row2):
     else:
         raise ValueError("Rows are different sizes and cannot be subtracted")
 
-def echelon(matrix): #
 
-    # if (len(matrix)) == (len(matrix[0])): #O(1) checks for sqaure matrices. works with non sqaure matrices, as well    
+def inverse(matrix): #
+
+    identity = make_identity(len(matrix))
+
+    for i in range(0,2):
         
         for col_index in range(len(matrix[0])): #O(n) this first for loop handles zeroes that might potentially lead to div by 0 errors
             col = get_col(matrix, col_index) # O(n)
@@ -78,46 +76,50 @@ def echelon(matrix): #
                     if row_index == col_index: #O(1)
                         denominator = matrix[row_index][col_index] #O(1)
                         raw_subtractant_row = matrix[row_index] #O(1)
+                        raw_subtractant_row_identity = identity[row_index]
                     pass              
 
                 else:
-                    row_to_sub_from = matrix[row_index] # O(1)
+
                     numerator = matrix[row_index][col_index] #O(1)
 
-
+                    row_to_sub_from = matrix[row_index] # O(1)
                     subtractant = row_by_scalar(raw_subtractant_row, (numerator/denominator)) # O(n)
                     subbed_row = subtract_row(row_to_sub_from, subtractant) # O(1)
-
                     matrix[row_index] = subbed_row
-        
-        return matrix
 
-    # else:
-    #     raise ValueError("List is not square")
+
+                    subtractant_identity = row_by_scalar(raw_subtractant_row_identity, (numerator/denominator))
+                    subbed_row1 = subtract_row(identity[row_index], subtractant_identity)
+                    identity[row_index] = subbed_row1  
+        
+        matrix = reflect(matrix)
+        identity = reflect(identity)
+    
+    print(matrix)
+    print(identity)
+
+    for i in range(len(matrix)):
+        identity[i] = row_by_scalar(identity[i], (1/matrix[i][i]))
+    
+    print(identity)
+
+
 
 ######### Vars
 
-# m1 = [
-#         [0,1,1,2,3,13],
-#         [0,1,1,2,3,13],
-#         [4,0,0,0,0,4],
-#         [0,0,1,1,1,6],
-#         [0,0,-1,1,1,4],
-#         [0,1,0,0,0,0]
-# ]
+######### Main
 
-m2 = [
-        [0,2,1,7],
-        [-3,0,4,9],
-        [1,-3,0,-5]
+# print(make_identity(5))
+ 
 
+test = [
+    [2,6,2],
+    [2,7,1],
+    [5,6,1]
 
 ]
 
-######### Main
 
-ech = echelon(m2)
 
-for i in ech:
-    print(i)
-
+print(inverse(test))
