@@ -24,18 +24,27 @@ Here, I will find det by iterating through a list in echelon form
 
 ######### Funcs
 
-def matrix_det(matrix):
+from matrices.matrices import echelon
 
-    if len(matrix) == len(matrix[0]):
 
-        det = 1
-        for diag_index in range(len(matrix)): # O(n)
-            det = det*matrix[diag_index][diag_index]
-    
-        return det
-    
-    else:
-        print(f"Error: argument expected to be square")
+def matrix_det(matrix, _istriangle = False):
+
+    while True:
+        if _istriangle == False:
+            matrix = echelon(matrix)
+            _istriangle = True
+        elif _istriangle == True:
+
+            if len(matrix) == len(matrix[0]):
+
+                det = 1
+                for diag_index in range(len(matrix)): # O(n)
+                    det = det*matrix[diag_index][diag_index]
+            
+                return det
+            
+            else:
+                print(f"Error: argument expected to be square")
 
 ######### Vars
 
