@@ -27,11 +27,12 @@ currently, there is support for:
 *   inverse
 
 I have made an effort to provide good documentation. Where I felt it was necessary, I included time complexity of code
+Keep in mind that although I've not found many bugs, that does not mean there are not cases under which this code will break
 
 log.txt separate
 
 known bugs:    
-    none
+    little to no argument validation
 
 '''
 
@@ -159,19 +160,54 @@ def echelon(matrix):
         the following for loop is where the actual formula happens
         the algorithm works as follows:
 
-        assume we have an array
+        assume we have an array, 
+        we have the nth column and we want to make all elements of that column below 
+        the nth row into 0
 
+        say n =0 then we have:
+
+        c1 = [           desired_c1 = [
+              3                         3
+              4                         4
+              3                         0
+              7                         0
+              2                         0
+                ]                         ]
+        
+        we can achieve this via subtracting a scalar multiple of the row such that we get 0
+        ex. row 2. we can achieve row 1, col 2 equaling 0 by 
+        subtracting row 1 * matrix[row1_idx][col2_idx]/matrix[row1_idx][row_idx]
         
         '''
-        for row_index in range(len(col)): # O(n)
+        for row_index in range(len(col)): # O(n) we iterate through row of each colum we have grabbed earlier
 
-            if row_index <= col_index: #O(1)
+            '''
+            remember, we only want to turn the rows below
+            the diagonal into 0. thus, we check if the row is indeed one we one to turn into 0
+            if it is not, its idx will be less than the column idx
+            if that proves to be true, we will simple pass
+            '''
+
+            if row_index <= col_index: #O(1)n checks if the row is one we do not want to turn to 0
+                '''
+                the following if statement is unnecessary, as I could have explicity called:
+                    matrix[col_index][col_index] when I called denominator later
+                    matrix[col_index] when I call raw_subtractant_row later
+                    however, will keep this code for readability, as I find this easier to understand.
+                '''
                 if row_index == col_index: #O(1)
                     denominator = matrix[row_index][col_index] #O(1)
                     raw_subtractant_row = matrix[row_index] #O(1)
                 pass              
 
             else:
+                '''
+                here we actually do the conversion to 0
+                this finds teh numerator of the scalar we will multiply the subtractant row by
+                then we will simply create the final subtractant row
+                then we simply subtract the two rows, resulting in a 0
+                we then replace the old row with the new one.                
+                '''
                 row_to_sub_from = matrix[row_index] # O(1)
                 numerator = matrix[row_index][col_index] #O(1)
 
@@ -182,3 +218,115 @@ def echelon(matrix):
                 matrix[row_index] = subbed_row # O(1)
     
     return matrix
+
+def matrix_det(matrix, _istriangle = False):
+
+    if isinstance(_istriangle, bool): # makes sure _istriangle is a boolean
+        while True: # while loop makes sure 
+            if _istriangle == False: # O(1) if tha matrix is not a triangle. it calls echelon
+                matrix = echelon(matrix) # O(n**3) sets the matrix to a newly triangled matrix 
+                _istriangle = True # O(1) sets _istriangle to True, as the matrix is now a triangle
+            elif _istriangle == True: # if the matrix is indeed a triangle, we run the following
+
+                if len(matrix) == len(matrix[0]): # checks if matrix is square
+
+                    det = 1 # determinant to 1
+                    for diag_index in range(len(matrix)): # O(n)
+                        det = det*matrix[diag_index][diag_index] # multiplies all of the diagonal elements to find the determinant
+                
+                    return det # returns the determinant, breaks the loops
+                
+                else:
+                    print(f"Error: argument expected to be square")
+    else:
+        raise(f"Argument _istriangle must be a bool") # raises error is _istriangle is not boolean
+
+def flip(matrix):
+
+    # the following program flips a matrix's column with a time complexity of O(n**2)
+    matrix = transpose(matrix) # O(n**2)
+    n = len(matrix) # O(1) easier to do than by calling len(matrix each time)
+
+    holder = [i for i in range(n)] # O(n) a blank list with all of the spots we will need
+    for i in range(0,n): # O(n)
+        holder[i] = matrix[(n-1-i)] # flips each row by assigning opposite idx to the new holder list
+
+    return transpose(holder) # O(n**2) re-transposes
+
+def reflect(matrix):
+    '''
+    the following code reflects matrix about its secondary diagonal
+    by fliping and then transposing and doing that twice
+    total time: O(n**2)
+    '''
+    for i in range(2): # O(1)
+        matrix = flip(matrix) # O(n**2)
+        matrix = transpose(matrix) # O(n**2)
+    return matrix
+
+def make_identity(dim):
+
+    # this codes creates an identity matrix with the specifid dimensions
+    # total time complexity: O(n**2)
+    l = [] # creates empty list
+
+    for one_idx in range(dim):
+        new_row = [0 for i in range(dim)] # makes sublist with all 0s
+        new_row[one_idx] = 1 # replaces the diagonal with a 1
+        l.append(new_row) # adds to the list we will return
+    
+    return l # returns the needed list
+
+def inverse(matrix): #
+
+    identity = make_identity(len(matrix))
+
+    for i in range(0,2):
+        
+        for col_index in range(len(matrix[0])): #O(n) this first for loop handles zeroes that might potentially lead to div by 0 errors
+            col = get_col(matrix, col_index) # O(n)
+
+            if col_index <= len(matrix): # O(1)
+
+                if all((i == 0) for i in col[col_index:]): #O(n)
+                    continue 
+                
+                elif col[col_index] == 0: # O(1)
+                    for i in range(len(col[col_index:])): #O(n)
+                        if col[col_index:][i] != 0: # O(1)
+                            row_idx = col_index+i # O(1)
+                            break 
+                    
+                    matrix[col_index], matrix[row_idx] = matrix[row_idx], matrix[col_index] # O(n)
+
+
+            for row_index in range(len(col)): # O(n)
+
+                if row_index <= col_index: #O(1)
+                    if row_index == col_index: #O(1)
+                        denominator = matrix[row_index][col_index] #O(1)
+                        raw_subtractant_row = matrix[row_index] #O(1)
+                        raw_subtractant_row_identity = identity[row_index]
+                    pass              
+
+                else:
+
+                    numerator = matrix[row_index][col_index] #O(1)
+
+                    row_to_sub_from = matrix[row_index] # O(1)
+                    subtractant = row_by_scalar(raw_subtractant_row, (numerator/denominator)) # O(n)
+                    subbed_row = subtract_row(row_to_sub_from, subtractant) # O(1)
+                    matrix[row_index] = subbed_row
+
+
+                    subtractant_identity = row_by_scalar(raw_subtractant_row_identity, (numerator/denominator))
+                    subbed_row1 = subtract_row(identity[row_index], subtractant_identity)
+                    identity[row_index] = subbed_row1  
+        
+        matrix = reflect(matrix)
+        identity = reflect(identity)
+
+    for i in range(len(matrix)):
+        identity[i] = row_by_scalar(identity[i], (1/matrix[i][i]))
+
+    return identity
