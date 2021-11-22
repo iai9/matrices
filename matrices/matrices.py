@@ -33,6 +33,7 @@ log.txt separate
 
 known bugs:    
     little to no argument validation
+    inverse matrix has no clause for sinular matrices
 
 '''
 
@@ -287,13 +288,27 @@ def make_identity(dim):
 def inverse(matrix): 
 
     '''
-    
+    finds the inverse of a matrix, uses very similar code to echelon
+    it takes reduces a matrix to upper triangle and applies the same transforms to an indentity matrix
+    it then reflects both of them, and puts the reflect matrix into upper triangle as well, and also
+    applies the changes to the identity matrix. we reflect again, then we divide each each diagonal
+    and apply that to the identity as well. the original matrix becomes an identity matrix,
+        array = [
+                [1,0,0,0...],
+                [0,1,0,0...],
+                [0,0,1,0...],
+                [0,0,0,0...1]
+        ]
+    and the identity matrix we initialized becomes the matrices inverse. we return the identity matrix
     
     '''
-    
-    identity = make_identity(len(matrix))
 
-    for i in range(0,2):
+    identity = make_identity(len(matrix)) # O(n**2) creates an identity matrix
+
+    for i in range(2): # O(1), we run through this twice, because we upper triangle and reflect twice
+
+        ''' the following code is copypastad from echelon save for a few lines
+        so consult echelon for more detailed documentation'''
         
         for col_index in range(len(matrix[0])): #O(n) this first for loop handles zeroes that might potentially lead to div by 0 errors
             col = get_col(matrix, col_index) # O(n)
@@ -318,7 +333,7 @@ def inverse(matrix):
                     if row_index == col_index: #O(1)
                         denominator = matrix[row_index][col_index] #O(1)
                         raw_subtractant_row = matrix[row_index] #O(1)
-                        raw_subtractant_row_identity = identity[row_index]
+                        raw_subtractant_row_identity = identity[row_index] # O(1) this line is one of the main ones that differs from echelon
                     pass              
 
                 else:
@@ -330,14 +345,20 @@ def inverse(matrix):
                     subbed_row = subtract_row(row_to_sub_from, subtractant) # O(1)
                     matrix[row_index] = subbed_row
 
-
+                    
+                    '''
+                    the following three lines are mainly what differs between this and echelon. it simply takes
+                    the operation we did on the row of the argument "matrix" and does it to the row of the identity
+                    '''
                     subtractant_identity = row_by_scalar(raw_subtractant_row_identity, (numerator/denominator))
                     subbed_row1 = subtract_row(identity[row_index], subtractant_identity)
                     identity[row_index] = subbed_row1  
         
+        # the following reflects the matrices so that we can echelon both again. then it reflects it again so we can get back to the original matrix
         matrix = reflect(matrix)
         identity = reflect(identity)
 
+    # we divide by 1/the diagonal in each row of the matrix 
     for i in range(len(matrix)):
         identity[i] = row_by_scalar(identity[i], (1/matrix[i][i]))
 
