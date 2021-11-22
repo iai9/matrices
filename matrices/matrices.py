@@ -218,6 +218,7 @@ def echelon(matrix):
                 matrix[row_index] = subbed_row # O(1)
     
     return matrix
+    # Full time: O(n**3)
 
 def matrix_det(matrix, _istriangle = False):
 
@@ -240,6 +241,8 @@ def matrix_det(matrix, _istriangle = False):
                     print(f"Error: argument expected to be square")
     else:
         raise(f"Argument _istriangle must be a bool") # raises error is _istriangle is not boolean
+    
+    # Full time: O(n**3)
 
 def flip(matrix):
 
@@ -253,6 +256,8 @@ def flip(matrix):
 
     return transpose(holder) # O(n**2) re-transposes
 
+    # Full time O(n**2)
+
 def reflect(matrix):
     '''
     the following code reflects matrix about its secondary diagonal
@@ -263,11 +268,12 @@ def reflect(matrix):
         matrix = flip(matrix) # O(n**2)
         matrix = transpose(matrix) # O(n**2)
     return matrix
+    # full time O(n**2)
 
 def make_identity(dim):
 
     # this codes creates an identity matrix with the specifid dimensions
-    # total time complexity: O(n**2)
+
     l = [] # creates empty list
 
     for one_idx in range(dim):
@@ -276,9 +282,15 @@ def make_identity(dim):
         l.append(new_row) # adds to the list we will return
     
     return l # returns the needed list
+    # full time: O(n**2)
 
-def inverse(matrix): #
+def inverse(matrix): 
 
+    '''
+    
+    
+    '''
+    
     identity = make_identity(len(matrix))
 
     for i in range(0,2):
@@ -330,3 +342,4 @@ def inverse(matrix): #
         identity[i] = row_by_scalar(identity[i], (1/matrix[i][i]))
 
     return identity
+
