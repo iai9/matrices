@@ -22,17 +22,13 @@ pi = 3.1415926535
 
 ######### Functions
 
-def deg_to_pi_rad(deg):
-    return deg/180
+deg_to_pi_rad = lambda deg: deg/180
 
-def pi_rad_to_deg(pirad):
-    return 180*pirad
+pi_rad_to_deg = lambda pirad: pirad*180
 
-def simplest_pi_rad(pirad):
-    return pirad%2
-
-def simplest_deg(deg):
-    return deg%360
+simplest_pi_rad = lambda pirad: pirad%2
+    
+simplest_deg = lambda deg: deg%360
 
 def factorial(number):
 
@@ -66,21 +62,14 @@ def sin(x):
 
     return h
 
-def cos(x):
-    h = 1/2 - x # cos(x) = sin(90-x) = sin(pi/2 radians - x)
-    return sin(h)
+cos = lambda x: sin((1/2)-x) # cos(x) = sin(90-x) = sin(pi/2 radians - x)
 
-def tan(x):
-    return sin(x)/cos(x)
+tan = lambda x: sin(x)/cos(x)
 
-def csc(x):
-    return 1/sin(x)
+csc = lambda x: 1/sin(x)
 
-def sec(x):
-    return 1/cos(x)
+sec = lambda x: 1/cos(x)
 
-def cot(x):
-    return cos(x)/sin(x)
-
+cot = lambda x: cos(x)/sin(x)
 
 ######### Main
