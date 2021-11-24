@@ -30,14 +30,21 @@ simplest_pi_rad = lambda pirad: pirad%2
     
 simplest_deg = lambda deg: deg%360
 
+pirad_to_rad = lambda pirad: pirad*pi
+
+rad_to_pirad = lambda rad: rad/pi
+
 def factorial(number):
 
-    if isinstance(number, int) and number > 1:
+    if isinstance(number, int) and number >= 1:
         initial_product = 1
         for i in range(1, number+1):
             initial_product = initial_product*i
         
         return initial_product
+
+    elif number == 0: return 1
+
     else:
         raise ValueError("Number cannot be factorial-ed")
 
@@ -72,4 +79,28 @@ sec = lambda x: 1/cos(x)
 
 cot = lambda x: cos(x)/sin(x)
 
+def arcsin(x, out_pirad = True):
+
+    if not(-1<x<1):
+        raise TypeError(f"Arguemt x: {x} must be between -1 and 1")
+    
+    else:
+        
+        h = 0
+        for n in range(0,100):
+            t1 = factorial(2*n) / (((2**n) * (factorial(n) ))**2)
+            t2 = (x**(2*n+1)) / (2*n+1)
+            t3 = t1*t2
+            h = h+t3
+        
+        if out_pirad == True:
+            return h/pi
+        
+        else: return h
+
+arccos = lambda x: (pi/2) - arcsin(x)
+
+
 ######### Main
+
+print(arccos(1/2))
