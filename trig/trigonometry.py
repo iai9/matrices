@@ -100,7 +100,8 @@ def arcsin(x, out_pirad = True):
 
 arccos = lambda x: (pi/2) - arcsin(x)
 
+def arctan(x, bool_): # margin of error of abt 0.4 when passing large numbers. unsure why, will try to fix. although not *too* bad performance
+    x = ((x)/((x**2+1)**(1/2))) # x over sqrt x*2 + 1
+    return arcsin(x, bool_) # calls asin
 
-######### Main
-
-print(arccos(1/2))
+print(arctan(500, False))
