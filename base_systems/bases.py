@@ -22,20 +22,16 @@ we start with a sublist that contains what base it is in, followed by the number
 
 
 def nbase_to_dec(num, strt_b = None): # expects num as a list specified in flowerbox. starting base is none to begin with
-    strt_b, num = num[0][0], num[1:] # separates them
-    
-    num = num.reverse()
-    final_sln = 0
-    for coef in range(len(num)):
-        final_sln = final_sln + num[coef]*(strt_b**coef)
-    
-    return final_sln
+    pass    
+ 
 
-def dec_to_nbase(coef_l, end_b = None):
-    pass
+    
 
 def nbase_to_nbase(coef_l, strt_b = None, end_b = None):
     pass
 
 ####### Main
 
+num = [[8],3,6,5]
+
+print(nbase_to_dec(num))
