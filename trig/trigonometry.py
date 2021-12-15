@@ -55,7 +55,7 @@ def sin(x):
 
     x = x*pi
 
-    h = x
+    h = x 
 
     for i in range(3, 102, 2):
 
