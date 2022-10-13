@@ -1,4 +1,4 @@
-This was originally supposed to just be a simple library for TWO_DIMENSIONAL matrices, not tensors. see ".\matrices\matrix.py" for my code and go to ".\matrices\indiv_funcs\" to see each individual function and more detailed documentation. 
+This was originally supposed to just be a simple library for TWO_DIMENSIONAL matrices, not higher dimension tensors. see ".\matrices\matrix.py" for my code and go to ".\matrices\indiv_funcs\" to see each individual function and more detailed documentation. 
 
 Since then, I've also added trigonometry because why not. located in ".\trig\trigonometry.py"
 Also currently working on base notation.
